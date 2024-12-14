@@ -27,3 +27,13 @@
       (with-redefs [read-db (fn [] {:income [{:amount 500} {:amount 300}]
                                     :expenses [{:amount 200} {:amount 100}]})]
         (remaining-budget)) => 500)
+
+(fact "budget-warning triggers when budget is below 10% of total income"
+      (with-redefs [total-income (fn [] 1000)
+                    remaining-budget (fn [] 50)]
+        (budget-warning)) => "⚠️ WARNING: Your remaining budget is below 10% of your total income! ⚠️")
+
+(fact "budget-warning does not trigger when budget is above 10% of total income"
+      (with-redefs [total-income (fn [] 1000)
+                    remaining-budget (fn [] 200)]
+        (budget-warning)) => nil)

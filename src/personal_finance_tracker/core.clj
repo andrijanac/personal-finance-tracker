@@ -52,13 +52,21 @@
         expenses (total-expenses)]
     (- income expenses)))
 
+(defn budget-warning []
+  (let [income (total-income)
+        budget (remaining-budget)]
+    (when (< budget (* 0.1 income))
+      "⚠️ WARNING: Your remaining budget is below 10% of your total income! ⚠️")))
+
 (defn -main []
   (println "Welcome to Personal Finance Tracker!")
   (println "Here is your current financial summary:")
   (println "---------------------------------------")
   (println "Total Income: " (total-income))
   (println "Total Expenses: " (total-expenses))
-  (println "Remaining Budget: " (remaining-budget))
+  (println "Remaining Budget: " (remaining-budget)) 
+  (when-let [warning (budget-warning)] 
+  (println warning))
   (println "---------------------------------------")
   (println "Thank you for using Personal Finance Tracker!"))
 
