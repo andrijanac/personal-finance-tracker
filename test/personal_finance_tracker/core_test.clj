@@ -14,3 +14,16 @@
       (valid-date? "08-12-2024") => false
       (valid-date? "invalid-date") => false
       (valid-date? "") => false)
+
+(fact "total-income calculates the sum of income amounts"
+      (with-redefs [read-db (fn [] {:income [{:amount 100} {:amount 200} {:amount 300}]})]
+        (total-income)) => 600)
+
+(fact "total-expenses calculates the sum of expense amounts"
+      (with-redefs [read-db (fn [] {:expenses [{:amount 50} {:amount 70} {:amount 80}]})]
+        (total-expenses)) => 200)
+
+(fact "remaining-budget calculates the difference between income and expenses"
+      (with-redefs [read-db (fn [] {:income [{:amount 500} {:amount 300}]
+                                    :expenses [{:amount 200} {:amount 100}]})]
+        (remaining-budget)) => 500)

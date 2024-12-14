@@ -41,7 +41,24 @@
         updated-data (update data :expenses #(conj % new-expense))]
     (write-db updated-data)))
 
+(defn total-income []
+  (reduce + (map :amount (:income (read-db)))))
+
+(defn total-expenses []
+  (reduce + (map :amount (:expenses (read-db)))))
+
+(defn remaining-budget []
+  (let [income (total-income)
+        expenses (total-expenses)]
+    (- income expenses)))
 
 (defn -main []
   (println "Welcome to Personal Finance Tracker!")
-  (println "Database content: " (read-db)))
+  (println "Here is your current financial summary:")
+  (println "---------------------------------------")
+  (println "Total Income: " (total-income))
+  (println "Total Expenses: " (total-expenses))
+  (println "Remaining Budget: " (remaining-budget))
+  (println "---------------------------------------")
+  (println "Thank you for using Personal Finance Tracker!"))
+
