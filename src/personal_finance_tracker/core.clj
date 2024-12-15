@@ -10,7 +10,7 @@
 
 (defn write-db [data]
   (with-open [writer (io/writer db-path)]
-    (.write writer (json/generate-string data))))
+    (.write writer (json/generate-string data {:pretty true}))))
 
 (defn valid-amount? [amount]
   (and (number? amount) (pos? amount)))
