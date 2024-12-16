@@ -58,6 +58,12 @@
     (when (< budget (* 0.1 income))
       "⚠️ WARNING: Your remaining budget is below 10% of your total income! ⚠️")))
 
+(defn reset-db []
+  (let [empty-data {:income [] :expenses []}]
+    (write-db empty-data)
+    (println "Database has been reset.")
+    empty-data))
+
 (defn -main []
   (println "Welcome to Personal Finance Tracker!")
   (println "Here is your current financial summary:")
@@ -66,7 +72,10 @@
   (println "Total Expenses: " (total-expenses))
   (println "Remaining Budget: " (remaining-budget)) 
   (when-let [warning (budget-warning)] 
-  (println warning))
+    (println warning))
   (println "---------------------------------------")
+  (println "If you want to reset the database, type 'reset', otherwise press Enter to exit.")
+  (when (= (read-line) "reset")
+    (reset-db))
   (println "Thank you for using Personal Finance Tracker!"))
 

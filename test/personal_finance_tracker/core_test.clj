@@ -37,3 +37,7 @@
       (with-redefs [total-income (fn [] 1000)
                     remaining-budget (fn [] 200)]
         (budget-warning)) => nil)
+
+(fact "reset-db clears the database and sets the values to default"
+      (with-redefs [write-db (fn [data] data)]
+        (reset-db) => {:income [] :expenses []}))
