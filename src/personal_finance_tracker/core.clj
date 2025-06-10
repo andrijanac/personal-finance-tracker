@@ -65,17 +65,54 @@
     empty-data))
 
 (defn -main []
-  (println "Welcome to Personal Finance Tracker!")
-  (println "Here is your current financial summary:")
-  (println "---------------------------------------")
-  (println "Total Income: " (total-income))
-  (println "Total Expenses: " (total-expenses))
-  (println "Remaining Budget: " (remaining-budget)) 
-  (when-let [warning (budget-warning)] 
-    (println warning))
-  (println "---------------------------------------")
-  (println "If you want to reset the database, type 'reset', otherwise press Enter to exit.")
-  (when (= (read-line) "reset")
-    (reset-db))
-  (println "Thank you for using Personal Finance Tracker!"))
+  (loop []
+    (println "Welcome to Personal Finance Tracker!")
+    (println "Choose an option:")
+    (println "1. View summary")
+    (println "2. Add income")
+    (println "3. Add expense")
+    (println "4. Reset database")
+    (println "5. Exit")
+    (print "Enter choice: ") (flush)
+    (let [choice (read-line)]
+      (case choice
+        "1" (do
+              (println "\nCurrent Financial Summary:")
+              (println "Total Income: " (total-income))
+              (println "Total Expenses: " (total-expenses))
+              (println "Remaining Budget: " (remaining-budget))
+              (when-let [warning (budget-warning)]
+                (println warning))
+              (println) (recur))
+        "2" (do
+              (print "Enter income category: ") (flush)
+              (let [category (read-line)]
+                (print "Enter amount: ") (flush)
+                (let [amount (Double/parseDouble (read-line))]
+                  (print "Enter date (yyyy-MM-dd): ") (flush)
+                  (let [date (read-line)]
+                    (add-income category amount date)
+                    (println "Income added.\n"))))
+              (recur))
+        "3" (do
+              (print "Enter expense category: ") (flush)
+              (let [category (read-line)]
+                (print "Enter amount: ") (flush)
+                (let [amount (Double/parseDouble (read-line))]
+                  (print "Enter date (yyyy-MM-dd): ") (flush)
+                  (let [date (read-line)]
+                    (add-expense category amount date)
+                    (println "Expense added.\n"))))
+              (recur))
+        "4" (do
+              (reset-db)
+              (println)
+              (recur))
+        "5" (println "Thank you for using Personal Finance Tracker!")
+        (do
+          (println "Invalid choice. Please try again.\n")
+          (recur))))))
+
+
+
 
