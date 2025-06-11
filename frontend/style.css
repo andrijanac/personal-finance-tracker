@@ -13,7 +13,15 @@ header {
     margin-bottom: 30px;
 }
 
-main button {
+#button-group {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+#button-group button {
     margin: 10px;
     padding: 15px 30px;
     font-size: 16px;
@@ -25,7 +33,7 @@ main button {
     transition: background-color 0.3s ease;
 }
 
-main button:hover {
+#button-group button:hover {
     background-color: #357ab8;
 }
 
@@ -34,4 +42,46 @@ main button:hover {
     font-size: 18px;
     color: #333;
     font-weight: bold;
+}
+
+form {
+    margin: 20px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    max-width: 450px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+form input {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+form button {
+    padding: 12px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #4a90e2;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: block;
+    margin: 0 auto;
+}
+
+form button:hover {
+    background-color: #357ab8;
+}
+
+#summary-section {
+    margin-top: 20px;
 }

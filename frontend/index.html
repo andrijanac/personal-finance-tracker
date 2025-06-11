@@ -7,18 +7,46 @@
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <header>
-        <h1>Personal Finance Tracker</h1>
-    </header>
 
-    <main>
+<header>
+    <h1>Personal Finance Tracker</h1>
+</header>
+
+<main>
+    
+    <div id="button-group">
         <button id="view-summary-btn">View Summary</button>
         <button id="add-income-btn">Add Income</button>
         <button id="add-expense-btn">Add Expense</button>
+    </div>
 
+    <div id="income-form" style="display: none;">
+        <h2>Add Income</h2>
+        <form id="income-entry-form">
+            <input type="text" id="income-category" placeholder="Category" required />
+            <input type="number" id="income-amount" placeholder="Amount" required />
+            <input type="date" id="income-date" required />
+            <button type="submit">Submit Income</button>
+        </form>
+    </div>
+
+    <div id="expense-form" style="display: none;">
+        <h2>Add Expense</h2>
+        <form id="expense-entry-form">
+            <input type="text" id="expense-category" placeholder="Category" required />
+            <input type="number" id="expense-amount" placeholder="Amount" required />
+            <input type="date" id="expense-date" required />
+            <button type="submit">Submit Expense</button>
+        </form>
+    </div>
+
+    <div id="summary-section" style="display: none;">
+        <h2>Summary</h2>
         <div id="output"></div>
-    </main>
-    
-    <script src="script.js"></script>
+    </div>
+
+</main>
+
+<script src="script.js"></script>
 </body>
 </html>

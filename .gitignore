@@ -4,3 +4,5 @@
 
 target/
 .clj-kondo/
+
+.DS_Store
