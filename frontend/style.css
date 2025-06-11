@@ -28,3 +28,10 @@ main button {
 main button:hover {
     background-color: #357ab8;
 }
+
+#output {
+    margin-top: 20px;
+    font-size: 18px;
+    color: #333;
+    font-weight: bold;
+}
