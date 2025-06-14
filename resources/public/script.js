@@ -30,6 +30,8 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('income-form').style.display = 'block';
         document.getElementById('expense-form').style.display = 'none';
         document.getElementById('summary-section').style.display = 'none';
+
+        document.getElementById('income-entry-form').reset();
     });
 
     document.getElementById('income-entry-form').addEventListener('submit', (e) => {
@@ -65,6 +67,8 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('income-form').style.display = 'none';
         document.getElementById('expense-form').style.display = 'block';
         document.getElementById('summary-section').style.display = 'none';
+
+        document.getElementById('expense-entry-form').reset();
     });
 
     document.getElementById('expense-entry-form').addEventListener('submit', (e) => {
