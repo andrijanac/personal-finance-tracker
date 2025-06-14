@@ -100,4 +100,24 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    const resetBtn = document.getElementById('reset-db-btn');
+    if (resetBtn) {
+        resetBtn.addEventListener('click', () => {
+            if (confirm("Are you sure you want to reset all data?")) {
+                fetch('/reset-db')
+                    .then(response => response.json())
+                    .then(result => {
+                        logMessage(result.message);
+                        document.getElementById('summary-section').style.display = 'block';
+                        document.getElementById('income-form').style.display = 'none';
+                        document.getElementById('expense-form').style.display = 'none';
+                        document.getElementById('view-summary-btn').click();
+                    })
+                    .catch(error => {
+                        console.error('Error resetting database:', error);
+                        logMessage('Failed to reset database.');
+                    });
+            }
+        });
+    }
 });
