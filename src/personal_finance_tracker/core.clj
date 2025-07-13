@@ -11,13 +11,15 @@
 
 (def db-path "src/personal_finance_tracker/my-budget.json")
 
-(defn read-db []
-  (with-open [reader (io/reader db-path)]
-    (json/parse-string (slurp reader) true)))
-
 (defn write-db [data]
   (with-open [writer (io/writer db-path)]
     (.write writer (json/generate-string data {:pretty true}))))
+
+(defn read-db []
+  (when-not (.exists (io/file db-path))
+    (write-db {:income [] :expenses []}))
+  (with-open [reader (io/reader db-path)]
+    (json/parse-string (slurp reader) true)))
 
 (defn valid-amount? [amount]
   (try
