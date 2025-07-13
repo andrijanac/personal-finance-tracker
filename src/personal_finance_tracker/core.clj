@@ -79,6 +79,10 @@
     empty-data))
 
 (defroutes app-routes
+  
+  (GET "/" []
+  (response/resource-response "index.html" {:root "public"}))
+
   (POST "/add-income" request
     (let [{:keys [category amount date]} (:body request)]
       (try
@@ -107,7 +111,8 @@
   (GET "/reset-db" []
     (reset-db)
     (response/response {:status "success" :message "Database reset."}))
-
+  
+  (route/resources "/") 
   (route/not-found "Not Found"))
 
 (def app
