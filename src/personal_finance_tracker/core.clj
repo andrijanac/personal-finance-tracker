@@ -71,8 +71,11 @@
 (defn budget-warning []
   (let [income (total-income)
         budget (remaining-budget)]
-    (when (< budget (* 0.1 income))
-      "⚠️ WARNING: Your remaining budget is below 10% of your total income! ⚠️")))
+    (if (< budget 0)
+      "⚠️ WARNING: You are currently over budget. Review your spending to avoid further deficit! ⚠️"
+      (if (< budget (* 0.1 income))
+        "⚠️ WARNING: Your remaining budget is below 10% of your total income! ⚠️"
+        nil))))
 
 (defn reset-db []
   (let [empty-data {:income [] :expenses []}]
