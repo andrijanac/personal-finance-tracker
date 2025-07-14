@@ -1,6 +1,6 @@
 # Personal Finance Tracker
 
-This is a simple web-based application built in Clojure, designed to help users track their personal income and expenses. The app provides a clear summary of total income, total expenses, and remaining budget, with a warning when the remaining amount drops below 10% of the total income.
+This is a simple web-based application built in Clojure, designed to help users track their personal income and expenses. The app provides a clear summary of total income, total expenses, and remaining budget, with a warning when the remaining amount drops below 10% of the total income or goes into negative.
 
 ## Features
 
@@ -8,6 +8,12 @@ This is a simple web-based application built in Clojure, designed to help users 
 - View financial summary with budget warning
 - Reset all data to start fresh
 - Frontend interface for easier data entry and overview
+
+This project was developed to address a personal need for tracking income and expenses that vary from day to day, particularly because of irregular earnings from occasional item sales. The interface is kept intentionally simple and focused on providing only the key financial information.
+
+Each entry in the backend also includes information about the category and date, which are stored in the JSON file and can be useful for future review or analysis.
+
+All amounts are displayed and stored in RSD (Serbian dinar).
 
 ## Technologies Used
 
